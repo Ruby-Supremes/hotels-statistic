@@ -27,7 +27,7 @@ const Hotels = ({
       <h6>Search here by hotel name to find a hotel you are looking for: </h6>
       <SearchBar searchTerm={searchTerm} onSearch={onSearch} />
       <u>
-        <h1>hotel List</h1>
+        <h1>Hotel List</h1>
       </u>
       <br />
       {hotelList}
