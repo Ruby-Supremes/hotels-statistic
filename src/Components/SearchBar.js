@@ -6,6 +6,7 @@ const SearchBar = ({ searchTerm, onSearch }) => {
 
     return (
         <div>
+            
             <input
                 type="text"
                 id="search"

@@ -4,19 +4,17 @@ import { NavLink } from "react-router-dom";
 const NavBar = () => {
   return (
     <>
-      <div className="">
+      <div className="navbar">
         <NavLink to="/">
-          <button className="">Home</button>
+          <button className="button">Home</button>
         </NavLink>
         <NavLink to="/hotels">
-          <button className="">Hotels</button>
+          <button className="button">Hotels</button>
         </NavLink>
         <NavLink to="/formpage">
-          <button className="">Add New Hotels</button>
+          <button className="button">Add New Hotels</button>
         </NavLink>
       </div>
     </>
-  );
-};
-
-export default NavBar;
+  ); }; export default NavBar;
+  

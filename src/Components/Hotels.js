@@ -1,8 +1,9 @@
-import EachBook from "./EachBook";
-import SearchBar from "./SearchBar";
+import EachHotel from "./EachHotel"
+import SearchBar from "./SearchBar"
 
 const Hotels = ({
   hotelsToDisplay,
+  
   addReview,
 
   searchTerm,
@@ -12,9 +13,11 @@ const Hotels = ({
   reviews,
 }) => {
   const hotelList = hotelsToDisplay.map((hotel) => (
-    <EachBook
+    <EachHotel
+
       key={hotel.id}
-      book={hotel}
+      
+      hotel={hotel}
       addReview={addReview}
       handleUpdateLikes={handleUpdateLikes}
       handleDeleteReview={handleDeleteReview}

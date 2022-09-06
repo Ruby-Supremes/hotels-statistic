@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import AddReview from "./AddReview";
 
-const EachBook = ({
+const EachHotel = ({
+  
   hotel,
   handleUpdateLikes,
   handleDeleteReview,
@@ -65,11 +66,11 @@ const EachBook = ({
         </button>
 
         {displayReview ? <ul>{eachReview}</ul> : null}
-        <AddReview book={hotel} addReview={addReview} />
+        <AddReview hotel={hotel} addReview={addReview} />
       </div>
       <hr />
     </>
   );
 };
 
-export default EachBook;
+export default EachHotel;

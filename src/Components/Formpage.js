@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+
+
+import { useHistory} from "react-router-dom";
 
 const FormPage = ({ addHotels }) => {
   let history = useHistory();
@@ -63,7 +65,7 @@ const FormPage = ({ addHotels }) => {
       </form>
       <img
         alt="hotel"
-        src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzZ8fGJvb2tzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+        src="https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg?auto=format&fit=crop&w=500&q=60"
       ></img>
     </div>
   );
