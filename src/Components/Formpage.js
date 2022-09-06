@@ -8,6 +8,19 @@ const FormPage = ({ addHotels }) => {
     description: "",
     likes: 0,
   });
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setNewHotel({ ...newHotel, [name]: value });
+  };
+  function handleSubmit(e) {
+    e.preventDefault();
+    const addNewBook = {
+      name: newHotel.name,
+      description: newHotel.description,
+      likes: 0,
+    };
+
   
 };
 export default FormPage;
