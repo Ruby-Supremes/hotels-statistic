@@ -21,7 +21,7 @@ const EachHotel = ({
       likes: hotel.likes + 1,
     };
 
-    fetch(`http://localhost:9292/hotels/${hotel.id}`, {
+    fetch(`http://localhost:9292/books/${hotel.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

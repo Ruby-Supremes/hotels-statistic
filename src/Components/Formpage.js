@@ -23,7 +23,7 @@ const FormPage = ({ addHotels }) => {
       likes: 0,
     };
 
-    fetch(`http://localhost:9292/hotels`, {
+    fetch(`http://localhost:9292/books`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
