@@ -21,7 +21,7 @@ const EachHotel = ({
     const addLikes = {
       likes: hotel.likes + 1,
     };
-
+console.log(addLikes)
     fetch(`http://localhost:9292/hotels/${hotel.id}`, {
       method: "PATCH",
       headers: {
@@ -31,6 +31,7 @@ const EachHotel = ({
     })
       .then((response) => response.json())
       .then(handleUpdateLikes);
+  
   }
 
 

@@ -14,7 +14,7 @@ const Hotels = ({
   
   feedbacks,
 }) => {
-  console.log(hotelsToDisplay, '>>>>>>>>>>')
+
   const hotelList = hotelsToDisplay.map((hotel) => (
     
 

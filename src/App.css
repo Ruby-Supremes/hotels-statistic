@@ -20,6 +20,7 @@ hr {
 
 
 
+
 .navbar {
   margin: 0px;
   position: fixed;
@@ -42,9 +43,11 @@ body {
   font-size: calc(10px + 2vmin);
   color: #17264f;
   text-align: center;
+  /* 
   border-style: solid;
   border-color: rgb(105, 122, 112);
   border-width: 4px;
+  */ 
   margin: 70px;
   margin-bottom: 15px;
 }
