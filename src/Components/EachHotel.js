@@ -1,19 +1,20 @@
 import React, { useState } from "react";
-import AddReview from "./AddReview";
+import AddFeedback from "./AddFeedback";
+
 
 const EachHotel = ({
-  
   hotel,
   handleUpdateLikes,
-  handleDeleteReview,
-  
-  addReview,
-}) => {
-  const [displayReview, setDisplayReview] = useState(false);
+  handleDeleteFeedback,
 
-  const showReview = (event) => {
+  
+  addFeedback,
+}) => {
+  const [displayFeedback, setDisplayFeedback] = useState(false);
+
+  const showFeedback = (event) => {
     event.preventDefault();
-    setDisplayReview(!displayReview);
+    setDisplayFeedback(!displayFeedback);
   };
 
   function updateLikes() {
@@ -21,7 +22,7 @@ const EachHotel = ({
       likes: hotel.likes + 1,
     };
 
-    fetch(`http://localhost:9292/books/${hotel.id}`, {
+    fetch(`http://localhost:9292/hotels/${hotel.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -32,22 +33,24 @@ const EachHotel = ({
       .then(handleUpdateLikes);
   }
 
-  function deleteReview(id) {
-    fetch(`http://localhost:9292/reviews/${id}`, {
+
+  function deleteFeedback(id) {
+    fetch(`http://localhost:9292/feedbacks/${id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     })
+
       .then((response) => response.json())
-      .then((data) => handleDeleteReview(data));
+      .then((data) => handleDeleteFeedback(data));
   }
 
-  const eachReview = hotel.reviews?.map((review) => (
-    <li className="noBullet" key={review.id}>
+  const eachFeedback = hotel.feedbacks?.map((feedback) => (
+    <li className="noBullet" key={feedback.id}>
       {/* <br /> */}
-      <button className="deleteButton" onClick={() => deleteReview(review.id)}>
+      <button className="deleteButton" onClick={() => deleteFeedback(feedback.id)}>
         ✖{" "}
       </button>
-      {review.text}
+      {feedback.text}
     </li>
   ));
 
@@ -61,12 +64,12 @@ const EachHotel = ({
           Likes: {hotel.likes}
         </button>
         <br />
-        <button className="button" onClick={showReview}>
-          {displayReview ? "Hide Reviews" : "Show Reviews"}
+        <button className="button" onClick={showFeedback}>
+          {displayFeedback ? "Hide Feedbacks" : "Show Feedbacks"}
         </button>
 
-        {displayReview ? <ul>{eachReview}</ul> : null}
-        <AddReview hotel={hotel} addReview={addReview} />
+        {displayFeedback ? <ul>{eachFeedback}</ul> : null}
+        <AddFeedback hotel={hotel} addFeedback={addFeedback} />
       </div>
       <hr />
     </>

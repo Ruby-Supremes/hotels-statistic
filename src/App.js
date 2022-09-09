@@ -2,43 +2,51 @@
 
 
 import "./App.css";
-import Home from  "./Components/Home"
+import Home from "./Components/Home"
 import NavBar from "./Components/NavBar";
-import  Hotels from "./Components/Hotels";
+import Hotels from "./Components/Hotels";
 import FormPage from "./Components/Formpage";
 import { Route } from "react-router-dom";
 import { useState, useEffect } from "react";
-
 function App() {
-  
+
   const [hotels, setHotels] = useState([]);
-  const [reviews, setReviews] = useState([]);
+  const [feedbacks, setFeedbacks] = useState([]);
+
+
   const [searchTerm, setSearchTerm] = useState("");
   useEffect(() => {
     fetch(`http://localhost:9292/hotels`)
       .then((response) => response.json())
       .then((data) => {
-        setHotels(data);
-      });
-  }, []);
 
+
+        setHotels(data);
+        
+      });
+    }, []);
+    
+// console.log(hotels)
   function addHotels(newHotel) {
+
     const updatedHotels = [newHotel, ...hotels];
     setHotels(updatedHotels);
+
   }
 
-  function addReview(newReview) {
+
+  function addFeedback(newFeedback) {
     const hotelToUpdate = hotels.find((hotel) => {
-      return hotel.id === newReview.hotel_id;
+      return hotel.id === newFeedback.hotel_id;
     });
 
-    const updatedReviews = [newReview, ...hotelToUpdate.reviews];
-    hotelToUpdate.reviews = updatedReviews;
+    const updatedFeedbacks = [newFeedback, ...hotelToUpdate.feedbacks];
+    hotelToUpdate.feedbacks = updatedFeedbacks;
     setHotels(
       hotels.map((hotel) => (hotel.id === hotelToUpdate.id ? hotelToUpdate : hotel))
     );
 
-    setReviews(updatedReviews);
+    setFeedbacks(updatedFeedbacks);
   }
 
   function handleUpdateLikes(updateLikes) {
@@ -47,25 +55,22 @@ function App() {
     });
     setHotels(updatedLikes);
   }
-  function handleDeleteReview(deletedReview) {
+  function handleDeleteFeedback(deletedFeedback) {
     const hotelToUpdate = hotels.find((hotel) => {
-      return hotel.id === deletedReview.hotel_id;
+      return hotel.id === deletedFeedback.hotel_id;
     });
 
-    const updatedReview = hotelToUpdate.reviews.filter((review) => {
-      return review.id !== deletedReview.id;
+    const updatedFeedback = hotelToUpdate.feedbacks.filter((feedback) => {
+      return feedback.id !== deletedFeedback.id;
     });
 
-    hotelToUpdate.reviews = updatedReview;
+    hotelToUpdate.feedbacks = updatedFeedback;
     setHotels(
       hotels.map((hotel) => (hotel.id === hotelToUpdate.id ? hotelToUpdate : hotel))
     );
-    setReviews(updatedReview);
+    setFeedbacks(updatedFeedback);
   }
 
-  const hotelsToDisplay = hotels.filter((hotel) => {
-    return hotel.title.toLowerCase().includes(searchTerm.toLowerCase());
-  });
 
   return (
     <div className="App">
@@ -74,13 +79,12 @@ function App() {
       <Route path="/hotels">
         <Hotels
           handleUpdateLikes={handleUpdateLikes}
-          addReview={addReview}
-          hotels={hotels}
-          hotelsToDisplay={hotelsToDisplay}
+          addFeedback={addFeedback}
+          hotelsToDisplay={hotels}
           searchTerm={searchTerm}
           onSearch={setSearchTerm}
-          handleDeleteReview={handleDeleteReview}
-          reviews={reviews}
+          handleDeleteFeedback={handleDeleteFeedback}
+          feedbacks={feedbacks}
         />
       </Route>
       <Route path="/formpage">
