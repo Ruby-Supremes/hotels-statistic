@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import AddFeedback from "./AddFeedback";
 
-
 const EachHotel = ({
   hotel,
   handleUpdateLikes,
   handleDeleteFeedback,
-
-  
   addFeedback,
 }) => {
   const [displayFeedback, setDisplayFeedback] = useState(false);
@@ -21,7 +18,7 @@ const EachHotel = ({
     const addLikes = {
       likes: hotel.likes + 1,
     };
-console.log(addLikes)
+
     fetch(`http://localhost:9292/hotels/${hotel.id}`, {
       method: "PATCH",
       headers: {
@@ -31,23 +28,19 @@ console.log(addLikes)
     })
       .then((response) => response.json())
       .then(handleUpdateLikes);
-  
   }
-
 
   function deleteFeedback(id) {
     fetch(`http://localhost:9292/feedbacks/${id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     })
-
       .then((response) => response.json())
       .then((data) => handleDeleteFeedback(data));
   }
 
   const eachFeedback = hotel.feedbacks?.map((feedback) => (
     <li className="noBullet" key={feedback.id}>
-      {/* <br /> */}
       <button className="deleteButton" onClick={() => deleteFeedback(feedback.id)}>
         ✖{" "}
       </button>
@@ -56,25 +49,67 @@ console.log(addLikes)
   ));
 
   return (
-    <>
-      <div className="bookCard">
+    <div style={styles.container}>
+      <div style={styles.hotelCard}>
         <h3>{hotel.name}</h3>
         <h4>{hotel.description}</h4>
 
-        <button className="button" onClick={updateLikes}>
+        <button style={styles.likesButton} onClick={updateLikes}>
           Likes: {hotel.likes}
         </button>
         <br />
-        <button className="button" onClick={showFeedback}>
+        <button style={styles.showFeedbackButton} onClick={showFeedback}>
           {displayFeedback ? "Hide Feedbacks" : "Show Feedbacks"}
         </button>
 
-        {displayFeedback ? <ul>{eachFeedback}</ul> : null}
+        {displayFeedback && <ul style={styles.feedbackList}>{eachFeedback}</ul>}
         <AddFeedback hotel={hotel} addFeedback={addFeedback} />
       </div>
-      <hr />
-    </>
+    </div>
   );
 };
 
 export default EachHotel;
+
+// CSS styles
+const styles = {
+  container: {
+    marginBottom: "20px",
+  },
+  hotelCard: {
+    padding: "20px",
+    borderRadius: "10px",
+    backgroundColor: "#f0f0f0",
+    boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
+  },
+  likesButton: {
+    padding: "8px 15px",
+    borderRadius: "5px",
+    backgroundColor: "#17264f",
+    color: "#fff",
+    fontSize: "14px",
+    fontWeight: "bold",
+    cursor: "pointer",
+    border: "none",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+    transition: "background-color 0.3s",
+  },
+  showFeedbackButton: {
+    padding: "8px 15px",
+    borderRadius: "5px",
+    backgroundColor: "#17264f",
+    color: "#fff",
+    fontSize: "14px",
+    fontWeight: "bold",
+    cursor: "pointer",
+    border: "none",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+    transition: "background-color 0.3s",
+    marginTop: "10px",
+  },
+  feedbackList: {
+    listStyleType: "none",
+    padding: "0",
+    marginTop: "10px",
+  },
+};
